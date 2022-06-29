@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stardust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/theme.css" rel="stylesheet" type="text/css">
+    <link href="/css/syntax.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Stardust</a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active visible-xs-block"><a href="/links.html">Links</a></li>
+                    <li class="active"><a href="/archive.html">Archive</a></li>
+                    <li class="active"><a href="/about.html">About</a></li>
+                    <li class="active"><a href="/feed.xml">RSS</a></li>
+                    
+                    
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar well">
+    <!-- https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container -->
+    <img src="/images/2016.png" style='height: 100%; width: 100%; object-fit: contain'/>
+
+    <i>2016.</i>
+</div>
+
+<div class="sidebar well">
+    <h1>Recent Posts</h1>
+    <ul>
+        
+          <li><a href="/2021/06/i-thought-about-killing-you.html"><pubDate>15 Jun 2021</pubDate> - I Thought About Killing You</a></li>
+        
+          <li><a href="/2021/05/lost-in-translation.html"><pubDate>03 May 2021</pubDate> - Lost In Translation (2003)</a></li>
+        
+          <li><a href="/2021/02/still-grinding.html"><pubDate>21 Feb 2021</pubDate> - Still Grindin'</a></li>
+        
+          <li><a href="/2020/08/a-two-minute-review.html"><pubDate>15 Aug 2020</pubDate> - A Two-Minute Horror Review</a></li>
+        
+          <li><a href="/2020/05/introduction.html"><pubDate>13 May 2020</pubDate> - Introduction</a></li>
+        
+          <li><a href="/2015/05/far-cry-3-story-analysis.html"><pubDate>25 May 2015</pubDate> - Far Cry 3: Story Analysis</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-rendering-pipeline.html"><pubDate>17 May 2015</pubDate> - OpenGL 4.3 - Part 4: Rendering Pipeline, Part 1</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-soil2.html"><pubDate>16 May 2015</pubDate> - OpenGL 4.3 - Part 3: Configuring SOIL2</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-introduction.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 1: Introduction</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-vs2013.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 2: Configuring VS2013</a></li>
+        
+    </ul>
+</div>
+
+<div class="sidebar well">
+<h1>Links</h1>
+<ul>
+  <li><a href="https://stardust-garden.itch.io/">itch.io</a></li>
+</ul>
+
+</div>
+
+        </div>
+        <div class="col-md-9">
+          <div class="article">
+            <div class="well">
+                <h1><a href="/2015/05/opengl-4.3-introduction.html">May 13, 2015 - OpenGL 4.3 - Part 1: Introduction</a></h1>
+            
+            <div class="post-content">
+            <p style="text-align: center"><img src="/images/opengl/0.jpg" alt="" /></p>
+
+<p>Loạt OpenGL tutorials này mình viết ra cho những ai có hứng thú tìm hiểu, và sử dụng nó, chỉ đơn giản có vậy. Nếu bạn đã có một khái niệm nhất định về OpenGL sẵn, bạn nên bỏ qua chương này. Nếu không, hãy tìm tới trang <a href="http://en.wikipedia.org/wiki/OpenGL">này</a> và đọc.</p>
+
+<p style="text-align: center"><img src="/images/opengl/1.jpg" alt="" /></p>
+<p align="center"><i>SOMA - một game kinh dị pha khoa học viễn tưởng, phát triển bởi Frictional Games, sử dụng OpenGL.</i></p>
+
+<p>Đầu tiên mình sẽ giải thích ý nghĩa của “specification/standard”. Trong phạm vi công nghệ thông tin (và cả hiểu biết của mình), đây là một văn bản chỉ rõ các thành phần, cấu trúc và tổ chức của một công nghệ nhất định, nhằm tạo ra sự nhất quán trong việc phát triển và sử dụng công nghệ đó. Một ví dụ điển hình là C++. Sau khi Bjarne cho ra cuốn “The C++ Programming Language” lần thứ hai vào năm 1991, mọi thứ bắt đầu trở nên lộn xộn. Chương trình viết và biên dịch được trên compiler này không thể dịch được bằng compiler khác, đơn giản chỉ là vì compiler đó thiếu một số thư viện/chức năng sử dụng trong chương trình (vốn có sẵn trong compiler kia). Năm 1998, JTC1/SC22/WG21 phát hành bản <strong>C++ standard</strong> đầu tiên với tên <strong>C++ 98</strong>. Thực chất nó là một văn bản định nghĩa lõi, cấu trúc và các thành phần cơ bản nhất của C++, và compiler writers sẽ viết compiler theo chuẩn (standard) này, tạo ra sự nhất quán và linh động trong việc viết phần mềm. Sau đó, nhóm này đã lần lượt phát hành các standards cho C++, lần lượt: C++ 03, C++ TR1, C++ 11 (C++ 0x) và sắp tới là C++ 14.</p>
+
+<p>OpenGL cũng không phải là ngoại lệ. Mình sẽ không đi sâu vào chi tiết: bản thân OpenGL không phải là một <strong>phần mềm</strong>, nó chỉ là một specification, và các nhà sản xuất card đồ họa (NVIDIA/AMD/Intel/..) sẽ phát triển API dựa trên specification này. OpenGL hiện được quản lý bởi Khronos Group (đồng tác giả OpenCL/OpenGL ES/WebGL/COLLADA và sắp tới là Vulkan, một revision lớn của OpenGL với nhiều thay đổi).</p>
+
+<h3 id="tại-sao-là-opengl-mà-không-phải-là-direct3d"><strong>Tại sao là OpenGL mà không phải là Direct3D?</strong></h3>
+<ul>
+  <li>OpenGL không bị giới hạn chỉ trong Windows và các sản phẩm tương tự của Microsoft (Xbox 360/One, Windows Phone).</li>
+  <li>Tốc độ xử lý (có thể) ngang bằng Windows trên chính nền tảng của nó với drivers tốt. Làm mình nhớ tới <a href="http://www.gamespot.com/articles/left-4-dead-2-faster-on-linux-than-windows-says-valve/1100-6390089/">bài viết 3 năm trước đây của Valve</a>.</li>
+  <li>Cross-platform. Linux, Mac. Một điều ngớ ngẩn mà hầu như ai cũng mắc phải đó là PS3/PS4 dùng OpenGL. Không. PSGL và GNM/GNMX không sử dụng OpenGL. Nói cách khác, OpenGL sẽ chạy trên bất cứ thứ gì đã được viết driver để hỗ trợ nó.</li>
+</ul>
+
+<p>Những thứ còn lại đều do mỗi cá nhân. OpenGL không được sử dụng phổ biến trong games (Windows rất phổ biến với Direct3D). Có, nhưng không nhiều. Gần đây có dịp thử Grand Theft Auto V, mới biết game engine của họ không hỗ trợ OpenGL (DirectX 10/10.1/11). Tương tự với những series games lớn (hầu hết, trừ Valve, id Software, Frictional Games và một vài nhà phát triển nữa, xem ở <a href="http://en.wikipedia.org/wiki/List_of_OpenGL_programs">đây</a>), nhưng có chỗ đứng rất chắc trong các nhóm phần mềm về mô phỏng (simulation), dựng/xử lý hình ảnh (rendering/image processing/modelers) - Blender, Adobe After Effects, Photoshop, 3DS Max, Maya, AutoCAD; kiến trúc (architecture/visualisation) - Google Earth, Google Sketchup. Và đừng quên những bộ phim của Pixar đều được dựng trên OpenGL.</p>
+
+<p>Ngoài ra, OpenGL có thể được gắn thêm các “plugins” (gọi là extensions). Các extensions này, nếu đủ phổ biến, sẽ được thêm vào specification của phiên bản OpenGL tiếp theo, còn không, người sử dụng vẫn có thể tiếp tục dùng chúng (tuy chỉ dưới dạng extensions và không chính thức). Ngược lại, với Direct3D, bạn chỉ có thể chờ đợi Microsoft thêm một (vài) năm cho một bản DirectX mới.</p>
+
+<h4 id="một-vài-điểm-phụ"><strong>Một vài điểm phụ:</strong></h4>
+<ul>
+  <li>Direct3D dễ sử dụng. Với bộ DirectX, bạn có trong tay renderer API (Direct3D), DirectInput, DirectCompute, DirectSound3D. Trong khi đó, OpenGL chỉ là một renderer API thuần. Các thứ như input, sound, network, physics, bạn có thể sử dụng các thư viện ngoài.</li>
+  <li>Intel thường hỗ trợ OpenGL kém. NVIDIA và AMD hỗ trợ OpenGL trong drivers của họ bằng những cách khác nhau, nên sẽ có trường hợp một phần mềm viết bằng OpenGL chạy ổn định trên card NVIDIA nhưng lỗi và/hoặc chạy rất kém trên AMD. Đó là do sự không nhất quán trong việc viết API của họ, không phải vì OpenGL là một API tồi.</li>
+  <li>Vấn đề không nằm ở chỗ bạn chọn API nào. Tất nhiên, hiện nay thì điều này đã trở nên đúng đắn hơn. Cách viết drivers để utilize API đó là một phần, cách viết phần mềm của programmers một phần, và tốc độ/hỗ trợ của card màn hình là một phần.</li>
+  <li>OpenGL có một phân nhánh cho mobile, gọi là <strong>OpenGL ES</strong> (Embedded systems) - Android, iOS, BlackBerry, Symbian đều sử dụng <strong>OpenGL ES</strong> làm thư viện đồ họa chính, Direct3D có các phiên bản dành riêng cho <strong>Windows Embedded, Xbox, Windows CE</strong>.</li>
+</ul>
+
+<h3 id="legacy-opengl-và-modern-opengl"><strong>Legacy OpenGL và Modern OpenGL</strong></h3>
+<p>Hầu hết các tutorials trên mạng sẽ hướng dẫn bạn sử dụng legacy OpenGL, nghĩa là các phiên bản OpenGL 2.1 trở về trước. Đây là những bản OpenGL rất cũ và không còn được sử dụng nữa, lý do chúng rất chậm và khó viết, sử dụng extensions với mật độ dày đặc, cú pháp không nhất quán và chỉ sử dụng fixed function pipeline (OpenGL 1.5 trở xuống chỉ dùng fixed function) (sẽ nói về vấn đề này ở những chương sau).</p>
+
+<p>Trong loạt tutorials này mình sẽ nhắm tới <strong>OpenGL 4.3, core profile</strong>, tương đương <strong>DirectX 11</strong>. Profiles trong OpenGL có hai loại: core và compatibility. Sử dụng compatibility profile nếu bạn muốn sử dụng (lại) các chức năng cũ, sử dụng fixed function pipeline, ngược lại, hãy dùng core profile.</p>
+
+
+            </div>
+            
+            </div>
+          </div>
+          <div class="pagination">
+              
+                <a class="btn btn-default" href="/2015/05/opengl-4.3-configuring-soil2.html" class="next">Newer Post</a>
+              
+              
+                <a class="btn btn-default" href="/2015/05/opengl-4.3-configuring-vs2013.html" class="previous">Older Post</a>
+              
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 footer navbar-inverse navbar-fixed-bottom">
+            <p class="copyright">&copy;2022 Stardust. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="https://github.com/scotte/jekyll-clean">Scott Emmons</a>
+            under
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+

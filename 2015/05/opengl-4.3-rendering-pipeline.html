@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stardust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/theme.css" rel="stylesheet" type="text/css">
+    <link href="/css/syntax.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Stardust</a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active visible-xs-block"><a href="/links.html">Links</a></li>
+                    <li class="active"><a href="/archive.html">Archive</a></li>
+                    <li class="active"><a href="/about.html">About</a></li>
+                    <li class="active"><a href="/feed.xml">RSS</a></li>
+                    
+                    
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar well">
+    <!-- https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container -->
+    <img src="/images/2016.png" style='height: 100%; width: 100%; object-fit: contain'/>
+
+    <i>2016.</i>
+</div>
+
+<div class="sidebar well">
+    <h1>Recent Posts</h1>
+    <ul>
+        
+          <li><a href="/2021/06/i-thought-about-killing-you.html"><pubDate>15 Jun 2021</pubDate> - I Thought About Killing You</a></li>
+        
+          <li><a href="/2021/05/lost-in-translation.html"><pubDate>03 May 2021</pubDate> - Lost In Translation (2003)</a></li>
+        
+          <li><a href="/2021/02/still-grinding.html"><pubDate>21 Feb 2021</pubDate> - Still Grindin'</a></li>
+        
+          <li><a href="/2020/08/a-two-minute-review.html"><pubDate>15 Aug 2020</pubDate> - A Two-Minute Horror Review</a></li>
+        
+          <li><a href="/2020/05/introduction.html"><pubDate>13 May 2020</pubDate> - Introduction</a></li>
+        
+          <li><a href="/2015/05/far-cry-3-story-analysis.html"><pubDate>25 May 2015</pubDate> - Far Cry 3: Story Analysis</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-rendering-pipeline.html"><pubDate>17 May 2015</pubDate> - OpenGL 4.3 - Part 4: Rendering Pipeline, Part 1</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-soil2.html"><pubDate>16 May 2015</pubDate> - OpenGL 4.3 - Part 3: Configuring SOIL2</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-introduction.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 1: Introduction</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-vs2013.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 2: Configuring VS2013</a></li>
+        
+    </ul>
+</div>
+
+<div class="sidebar well">
+<h1>Links</h1>
+<ul>
+  <li><a href="https://stardust-garden.itch.io/">itch.io</a></li>
+</ul>
+
+</div>
+
+        </div>
+        <div class="col-md-9">
+          <div class="article">
+            <div class="well">
+                <h1><a href="/2015/05/opengl-4.3-rendering-pipeline.html">May 17, 2015 - OpenGL 4.3 - Part 4: Rendering Pipeline, Part 1</a></h1>
+            
+            <div class="post-content">
+            <h1 style="color:Green;"><b><p align="center">OpenGL 4.3 rendering pipeline (phần 1)</p></b></h1>
+
+<p>Rendering pipeline là một loạt các bước cố định mà OpenGL thực hiện để “biến” dữ liệu đầu vào thành những gì mà bạn thấy trên màn hình phẳng trước mặt.</p>
+
+<p>Đây là mục tiêu của chúng ta:<br />
+<img src="/images/opengl/15.jpg" alt="" /></p>
+
+<p>Thực tế là:<br />
+<img src="/images/opengl/16.jpg" alt="" /></p>
+
+<p>Và đây là những gì có trong hộp đen “rendering pipeline”, chúng ta sẽ giải thích từng bước một trong hình.</p>
+<h1 style="color:#0b5394;"><b>Programmable pipeline</b></h1>
+<p><img src="/images/opengl/17.png" alt="" /></p>
+
+<h1 style="color:#0b5394;"><b>Fixed function pipeline</b></h1>
+<p><img src="/images/opengl/18.jpg" alt="" /></p>
+
+<p>Ta sẽ lần lượt nói về 2 pipelines trên, nhưng trong loạt tutorials OpenGL 4.3 này, <em><strong>chúng ta chỉ sử dụng programmable pipeline</strong></em>.</p>
+
+<h3 id="về-programmable-pipeline"><strong>Về programmable pipeline</strong></h3>
+<h4 style="color:#351c75;"><b>0. Vertex specification</b></h4>
+<p>Ở bước này, việc của chúng ta là cấp dữ liệu đầu vào cho OpenGL. Dữ liệu này có thể là dữ liệu liên quan tới đỉnh (vertex) của các hình cơ bản - tam giác, tứ giác, hoặc chỉ đơn giản là 2 đỉnh (vertices) của một đoạn thẳng. Chúng ta chỉ cần cung cấp tọa độ điểm, và (kèm với một số yếu tố khác), OpenGL sẽ lập ra các tam giác/tứ giác dựa trên những điểm này (việc này sẽ xảy ra ở bước <strong>Primitive assembly</strong>, xem ở dưới).</p>
+
+<p><strong>Tóm lại, ở bước này, dữ liệu sẽ được đưa vào pipeline.</strong><br />
+Sau bước này, chúng ta sẽ thấy:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="n">GLfloat</span> <span class="n">vertices</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>
+    <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>
+    <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 style="color:#351c75;"><b>1. Vertex shader</b></h4>
+<p>Có thể, bạn đã nghe ở đâu đó 2 cụm từ “vertex shader” và “pixel shader”. Trong OpenGL, “pixel shader” được gọi là “fragment shader”, nó mang nghĩa tương tự. Đây là một trong 2 giai đoạn bắt buộc trong bất cứ chương trình OpenGL nào.</p>
+
+<p>Trong giai đoạn (stage) này (vertex shader), dữ liệu đầu vào (dữ liệu về vị trí của các vertices), sẽ được tính toán để cho ra vị trí cuối cùng của vertices. Well, các vertices này chưa thể nằm được trên màn hình người sử dụng, ít nhất là cho đến giai đoạn “Rasterization” (sẽ nói sau).</p>
+
+<p><em>Bạn hỏi:</em> “Tại sao không dùng ngay vị trí của vertices ở dữ liệu đầu vào làm dữ liệu tọa độ. Tức là sao không dùng ngay vị trí ở dữ liệu đầu vào đê xác định tọa độ vertices, mà phải cho vào vertex shader để xử lý, rất mất công?”. Vì dữ liệu đầu vào chỉ là tương đối. Có thể, sau này bạn sẽ sửa lại dữ liệu đó. Có nghĩa là, bạn đưa dữ liệu đầu vào là tọa độ của 1 cái hộp, không bị biến dạng. Nhưng bạn muốn nhìn cái hộp đó từ một góc 45 độ, nghĩa là, lúc đó tọa độ các vertices của cái hộp sẽ phải thay đổi, nghĩa là cái hộp sẽ phải bị biến dạng. Như vậy, dữ liệu đầu vào cần được “biến đổi” (transformed) sao cho khi xuất hiện trên màn hình, nó sẽ được đặt ở vị trí phù hợp với góc 45 độ mà bạn muốn nhìn. Như vậy, chúng ta sẽ nhận dữ liệu đầu vào là tọa độ gốc của cái hộp, transform tọa độ đó thành tọa độ mới mà bạn muốn nhìn, và đó là công việc của vertex shader - tính toán vị trí cuối cùng của vertices. <strong>Việc transform tọa độ vertices mình sẽ nói ở một bài riêng (cụ thể, ờ phần 2).</strong></p>
+
+<p>Vì vertex shader chỉ process dữ liệu về tọa độ vertices, những dữ liệu khác như colors, normals, textures..sẽ không mất đi mà chỉ đơn giản là bị bỏ qua, nghĩa là vertex shader sẽ truyền thẳng (pass-through) các dữ liệu này cho các stages sau mà không đá động gì tới chúng. Một ví dụ điển hình là fragment shader sẽ phụ trách dữ liệu liên quan tới color và texture của một vertex.</p>
+
+<p><strong>Tóm lại, ở giai đoạn này, vertex shader sẽ biến đổi dữ liệu tọa độ đầu vào thành dữ liệu tọa độ cuối cùng, không thể thay đổi được nữa.</strong> (Well..không hẵn, hãy chuyển qua bước kế tiếp).</p>
+
+<p>Sau bước này, chúng ta sẽ thấy (lưu ý, đây không phải là những gì sẽ xuất hiện trên màn hình, chỉ là tượng trưng)<br />
+<img src="/images/opengl/19.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>2. Tessellation</b></h4>
+<p>Như trên mình đã nói, một chương trình OpenGL bắt buộc phải có 2 shader stages là vertex shader và fragment shader. Sau giai đoạn vertex shader, sẽ không có một giai đoạn nào nữa để transform vị trí của các vertices đầu vào. Tuy nhiên, nếu ta sử dụng thêm stage tessellation, data về vertices có thể được thay đổi một lần nữa.</p>
+
+<p>Tessellation là quá trình chia nhỏ các vertices. Thay vì phải tự tay sắp đặt các vertices nhỏ và rất nhỏ để tạo được độ chi tiết (detail, realistic, v..v..) cho model, OpenGL sẽ tự động làm việc này. Tessellation tiết kiệm được rất nhiều thời gian cho artists/level designers khi phải thiết kế nhân vật/màn chơi, cũng như giúp giảm tải GPU do không phải gọi API liên tục với số lượng lớn. Đây là một hình ảnh so sánh:<br />
+<img src="/images/opengl/20.jpg" alt="" /></p>
+
+<p>Nếu có mặt tessellation shader, vertices sau khi qua xử lý từ stage trước (vertex shader) sẽ tiếp tục được xử lý bởi tessellator để cho ra hình thù cuối cùng.</p>
+<ul>
+  <li>Khác với các kiểu dữ liệu cơ bản của OpenGL, vốn dùng tam giác, đoạn thẳng và tứ giác, tessellation sử dụng <strong>“patches”</strong> để mô tả hình dáng của một vật thể. Patch, nói một cách đơn giản nhất, là một danh sách các vertices có thứ tự. Patches chỉ được sử dụng trong tessellation stage, không thể sử dụng patches trong các stage như vertex và fragment (vì chúng chỉ hoạt động trên các geometric primitives cơ bản của OpenGL đó là đoạn, tam giác, tứ giác).</li>
+</ul>
+
+<h5 style="color:#351c75;"><b>2.1. Tessellation control shader (TCS)</b></h5>
+<p>Giai đoạn này chưa thực sự “tessellate” các vertices. Có thể gọi là “tiền tessellate”. Theo wiki OpenGL, nhiệm vụ của Tessellation Control Shader là:</p>
+<ul>
+  <li>Quyết định bao nhiêu geometric primitives có thể “lôi” ra được từ những patches đầu vào.</li>
+  <li>Thực hiện biến đổi trên các patches đầu vào, vì primitive geometry của tessellation shader là patches, không phải là primitive thường của OpenGL. Chúng bao gồm thêm, bớt patches/nội dung patches (là các primitive geometry của OpenGL), và trả chúng cho stage (2.2) (bên dưới).</li>
+</ul>
+
+<p>Bước này không bắt buộc.</p>
+
+<h5 style="color:#351c75;"><b>2.2. Tessellate</b></h5>
+<p>Ở bước này, OpenGL sẽ tiến hành “tessellate” dựa trên patches đầu vào để tạo ra các primitives mới.</p>
+
+<h5 style="color:#351c75;"><b>2.3. Tessellation evaluation shader</b></h5>
+<p>Bước này sẽ sử dụng kết hợp dữ liệu ra của bước (2.1) và dữ liệu từ sau giai đoạn tessellate (2.2) để tính toán vị trí cuối cùng của vertices. Bước này là bắt buộc vì tọa độ cuối cùng của các vertices sẽ được xuất ra.</p>
+
+<p>Sau giai đoạn này, bạn sẽ thấy:<br />
+<img src="/images/opengl/21.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>3. Geometry shader</b></h4>
+<p>Trong giai đoạn này, các primitives mới sẽ được tạo ra từ primitives đầu vào. Khác với vertex shader stage chỉ truy cập duy nhất 1 vertex (per-vertex) trong 1 lần chạy shader, geometry shader có thể truy cập một geometric primitive (per-vertex hoặc multi-vertex) và do đó, có thể thực hiện xóa bỏ, tạo, chỉnh sửa các primitives này.</p>
+
+<p>Sau bước này, bạn sẽ thấy:<br />
+<img src="/images/opengl/22.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>4. Primitive assembly</b></h4>
+<p>Vì dữ liệu chúng ta truyền vào chỉ là tọa độ điểm của các vertices, nên trong stage này, OpenGL sẽ tìm cách nối các điểm đó lại để tạo thành các primitives cơ bản, có thể là điểm, đoạn thẳng, tam giác, hoặc tứ giác.</p>
+
+<p>Sau bước này, bạn sẽ thấy:<br />
+<img src="/images/opengl/23.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>5. Post-vertex processing</b></h4>
+<p>Đây là một nhóm các bước, nhưng chúng ta chỉ nói riêng clipping.</p>
+
+<p>Ở bước này, OpenGL sẽ cắt bớt những gì nằm bên ngoài khung nhìn (viewport).<br />
+Khung nhìn mặc định là hình chữ nhật áp sát màn hình của bạn, và bị giới hạn bởi cửa sổ nơi mà việc render được thực hiện.<br />
+Vị trí và kích thước khung nhìn được định nghĩa bởi 1 API call, “<strong>glViewport()</strong>”, nhưng nếu không gọi, thì viewport mặc định là toàn bộ hình chữ nhật trong phạm vi cửa sổ chương trình.</p>
+
+<p>Clipping được thực hiện tự động bởi OpenGL.<br />
+<strong>Tóm lại, ở bước này, những vertices nằm ngoài viewport sẽ bị xóa bỏ và các vertices liên quan tới vertices bị xóa sẽ được điều chỉnh và tạo thành primitive mới sao cho khớp, giống như đang bị cắt thật sự.</strong> Nói một cách chính xác hơn, geometry sẽ được cắt khỏi <a href="http://en.wikipedia.org/wiki/Viewing_frustum">view frustum</a>. Mình sẽ nói rõ hơn về vấn đề này ở phần 2.</p>
+
+<p>Sau bước này, bạn sẽ thấy:<br />
+<img src="/images/opengl/24.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>6. Rasterization</b></h4>
+<p>Vậy là công việc với vertices đầu vào đã hoàn tất. Việc tiếp theo là biểu diễn vị trí các vertices này trên màn hình. Đó là công việc của rastersizer. <br />
+Rastersizer sẽ nhận tọa độ vertices đầu vào (đã được transformed từ các stages trước) và generates fragment(s) cho các vertices đó.</p>
+
+<p><em><strong>Nói thêm về fragment:</strong></em></p>
+<ul>
+  <li>Dữ liệu thuộc về một pixel chỉ bao gồm màu RGBA. (RGB và thêm một 8-bit alpha channel).</li>
+  <li>Dữ liệu thuộc về một fragment bao gồm <strong>tất cả những thông tin cần thiết để sinh pixel(s).</strong></li>
+</ul>
+
+<p>Sau bước này, bạn sẽ thấy:<br />
+<img src="/images/opengl/25.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>7. Fragment shader</b></h4>
+<p>Stage thứ hai và cũng là stage bắt buộc cuối cùng trong rendering pipeline.<br />
+Trong stage này, fragment shader sẽ lấy từng fragment từ rastersizer và tính toán các giá trị depth, stencil và màu của fragment đó. Trong stage này, màu của một fragment sẽ được quyết định, dù trong stage sau (8), màu có thể bị biến đổi một lần nữa.</p>
+
+<p>Một điểm mạnh của fragment shader là chúng có thể được dùng với kĩ thuật texture mapping để áp texture lên bề mặt vật thể. Thay vì tô màu, chúng ta có thể “tô” texture.</p>
+
+<p>Tóm lại, trong giai đoạn này, màu của một fragment sẽ được quyết định. Lưu ý, fragment khác với pixel (đọc lại (6)).</p>
+
+<p>Sau bước này, bạn sẽ thấy:<br />
+<img src="/images/opengl/26.jpg" alt="" /></p>
+
+<h4 style="color:#351c75;"><b>8. Per-fragment/per-sample processing, testing, blending</b></h4>
+<p>Trong stage trước, như đã nói, output của fragment shader là tính toán màu, depth và stencil.</p>
+
+<p>Các fragments đầu vào cho stage này sẽ phải qua một loạt tests. Nếu thành công ở tất cả tests, một fragment sẽ trở thành pixel và có một chỗ riêng trên framebuffer (màn hình), và các giá trị của nó (màu, depth) sẽ được viết vào các buffer tương ứng (color buffer và depth buffer).</p>
+
+<p>Các tests mà một fragment phải trải qua bao gồm:</p>
+<ul>
+  <li><strong>Scissor test:</strong> Kiểm tra một fragment có nằm ngoài vùng render không. Nếu nằm ngoài, fragment sẽ bị loại (discarded). Nếu fragment bị loại, các tests sau cho fragment đó sẽ không được thực hiện. Vùng render được xác định bằng <strong>glScissor()</strong>.</li>
+  <li><strong>Stencil test:</strong> Kiểm tra một fragment có nằm ngoài vùng render không. Nghe có vẻ giống với scissor test. Nhưng ta dùng stencil buffer/test, ví dụ, để render lên một cái cửa kính xe chẳng hạn, và tất cả những gì nằm ngoài cái cửa kính xe sẽ không được rendered. Ngược lại với scissor test, chỉ hoạt động với các vùng vuông, chữ nhật. Ta có thể dùng scissor để chia viewports ra làm nhiều vùng (giống split-screen co-op shooter), và render riêng trên mỗi vùng được chia ra, thì lúc này scissor test sẽ có ích.</li>
+  <li><strong>Depth test:</strong> Test độ sâu của một fragment. Depth của một fragment nếu bé hơn giá trị của cùng một điểm trong depth buffer sẽ bị discarded.</li>
+  <li>&lt;…&gt;</li>
+</ul>
+
+<p>Những fragment còn sống sọt sẽ là những gì sẽ được render lên màn hình.</p>
+
+<h3 id="về-fixed-function-pipeline"><strong>Về fixed function pipeline</strong></h3>
+<p><em><strong>[!]</strong> Bạn nên đọc programmable pipeline trước khi đọc fixed function pipeline, vì chúng ta sẽ không dùng fixed function pipeline nên mình sẽ rút lại phần này còn rất ngắn, chỉ nói sơ qua.</em></p>
+
+<p>Fixed function pipeline là pipeline cũ dùng từ legacy OpenGL (1.5 trở về trước), lúc mà phần cứng còn hạn chế. Ở programmable pipeline, chúng ta được tự do quyền kiểm soát các stage vertex, fragment, tesellation và geometry, nên ta có thể biến đổi vertices/fragments/.. tùy ý muốn, thông qua ngôn ngữ đổ bóng của OpenGL - GLSL (OpenGL Shading Language). Ví dụ, vì fragment shader có thể điều khiển được màu của fragment, ta có thể sử dụng nó để viết các post-process effects như HDR, Bloom, tone mapping, depth of field (chắc chắn ít nhiều bạn cũng đã từng nghe tới những khái niệm này trong games). Tương tự với vertex shader và tessellation shader, nên pipeline của modern OpenGL mới có tên gọi “programmable pipeline”.</p>
+
+<p>Fixed function, một cách ngược lại, chúng ta không có quyền điều khiển các shader stages, mà chúng sẽ được điều khiển trực tiếp bới GPU. Như vậy, ta không có quyền điều khiển các stages này, đồng nghĩa với việc không có những hiệu ứng post-process (nói ở trên), normal mapping (sử dụng normals của vật thể để tạo hiệu ứng bề nổi), shadow mapping (bóng đổ), v..v….</p>
+
+<p>Hầu hết những GPUs hiện nay đều có hỗ trợ programmable pipeline.</p>
+
+            </div>
+            
+            </div>
+          </div>
+          <div class="pagination">
+              
+                <a class="btn btn-default" href="/2015/05/far-cry-3-story-analysis.html" class="next">Newer Post</a>
+              
+              
+                <a class="btn btn-default" href="/2015/05/opengl-4.3-configuring-soil2.html" class="previous">Older Post</a>
+              
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 footer navbar-inverse navbar-fixed-bottom">
+            <p class="copyright">&copy;2022 Stardust. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="https://github.com/scotte/jekyll-clean">Scott Emmons</a>
+            under
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+

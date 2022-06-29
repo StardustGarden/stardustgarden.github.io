@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stardust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/theme.css" rel="stylesheet" type="text/css">
+    <link href="/css/syntax.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Stardust</a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active visible-xs-block"><a href="/links.html">Links</a></li>
+                    <li class="active"><a href="/archive.html">Archive</a></li>
+                    <li class="active"><a href="/about.html">About</a></li>
+                    <li class="active"><a href="/feed.xml">RSS</a></li>
+                    
+                    
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar well">
+    <!-- https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container -->
+    <img src="/images/2016.png" style='height: 100%; width: 100%; object-fit: contain'/>
+
+    <i>2016.</i>
+</div>
+
+<div class="sidebar well">
+    <h1>Recent Posts</h1>
+    <ul>
+        
+          <li><a href="/2021/06/i-thought-about-killing-you.html"><pubDate>15 Jun 2021</pubDate> - I Thought About Killing You</a></li>
+        
+          <li><a href="/2021/05/lost-in-translation.html"><pubDate>03 May 2021</pubDate> - Lost In Translation (2003)</a></li>
+        
+          <li><a href="/2021/02/still-grinding.html"><pubDate>21 Feb 2021</pubDate> - Still Grindin'</a></li>
+        
+          <li><a href="/2020/08/a-two-minute-review.html"><pubDate>15 Aug 2020</pubDate> - A Two-Minute Horror Review</a></li>
+        
+          <li><a href="/2020/05/introduction.html"><pubDate>13 May 2020</pubDate> - Introduction</a></li>
+        
+          <li><a href="/2015/05/far-cry-3-story-analysis.html"><pubDate>25 May 2015</pubDate> - Far Cry 3: Story Analysis</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-rendering-pipeline.html"><pubDate>17 May 2015</pubDate> - OpenGL 4.3 - Part 4: Rendering Pipeline, Part 1</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-soil2.html"><pubDate>16 May 2015</pubDate> - OpenGL 4.3 - Part 3: Configuring SOIL2</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-introduction.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 1: Introduction</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-vs2013.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 2: Configuring VS2013</a></li>
+        
+    </ul>
+</div>
+
+<div class="sidebar well">
+<h1>Links</h1>
+<ul>
+  <li><a href="https://stardust-garden.itch.io/">itch.io</a></li>
+</ul>
+
+</div>
+
+        </div>
+        <div class="col-md-9">
+            
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/05/opengl-4.3-configuring-vs2013.html">May 13, 2015 - OpenGL 4.3 - Part 2: Configuring VS2013</a></h1>
+        
+        <div class="content">
+            <p style="text-align: center"><img src="/images/opengl/2.jpg" alt="" /></p>
+<h1 style="color:Green;"><b><p align="center">Cài đặt OpenGL với Visual Studio 2013 (Community Edition), GLFW3, GLEW và GLM</p></b></h1>
+
+<p><strong>Dùng từ “cài đặt” ở đây để chỉ cách thiết lập OpenGL trên các IDEs phổ biến/dễ sử dụng nhất. Trong bài viết này mình chỉ hướng dẫn cài đặt OpenGL trên các hệ điều hành phổ biến: Windows, Linux (Kubuntu 14.04.1 LTS); các IDEs: Microsoft Visual Studio 2013 (Community Edition).</strong></p>
+
+<p>Vì OpenGL không có các công cụ quản lý riêng để quản lý input, windowing, network, physics và sound riêng nên chúng ta sẽ sử dụng các thư viện ngoài để hỗ trợ. Chúng bao gồm</p>
+
+<ul>
+  <li>GLFW3, GLM (OpenGL Mathematics), GLEW (OpenGL Extension Wrangler)/glbinding</li>
+  <li>Physics engine. Chúng ta sẽ sử dụng Bullet.</li>
+</ul>
+
+<p>Chúng ta sẽ sử dụng ngôn ngữ C(++) chính để viết các chương trình OpenGL. Với Kubuntu, mình sẽ dùng Geany và build các thư viện GLFW, GLEW riêng, vì những thư viện này không có repository riêng hoặc repository của chúng chỉ chứa các phiên bản cũ.</p>
+
+<p align="center"><h1 style="color:Gray;"><b>Cài đặt OpenGL trên Microsoft Windows/Microsoft Visual Studio 2013 (Community Edition)</b></h1></p>
+<p>Microsoft đã chính thức ngừng hỗ trợ OpenGL từ sau khi project Farenheit thất bại - một sự hợp tác giữa SGI (tác giả những phiên bản đầu tiên của OpenGL) và Microsoft trong việc kết hợp OpenGL và Direct3D thành một graphics API thống nhất. Đó là lý do vì sao trong phiên bản mới nhất của MSVC - trình biên dịch chuẩn của Visual Studio, vẫn còn sử dụng OpenGL 1.x. Để sử dụng OpenGL 4.3, ta dùng GLEW. Tác dụng của GLEW để load các extensions của các phiên bản OpenGL từ 1.0 -&gt; 4.5, và kiểm tra xem extensions có hỗ trợ trên card đồ họa không.</p>
+
+<p>Lý do mình dùng GLEW không phải vì nó phổ biến, mà là vì:</p>
+
+<ul>
+  <li>Chúng ta đang dùng C trộn với một ít C++, vì dù sao OpenGL cũng rất hay được viết bằng C (thuần), và cách làm việc của OpenGL cũng hướng theo kiểu state-based (mình sẽ giải thích sau).</li>
+  <li>Sử dụng GLEW rất dễ, để khởi động GLEW chỉ cần một vài dòng lệnh.</li>
+  <li>Bạn không muốn viết các code lấy các tính năng của OpenGL 4.3. GLEW sẽ làm việc này.</li>
+</ul>
+
+<p>Download GLEW ở đây: <a href="https://sourceforge.net/projects/glew/files/glew/1.12.0/glew-1.12.0-win32.zip/download">https://sourceforge.net/projects/glew/files/glew/1.12.0/glew-1.12.0-win32.zip/download</a></p>
+
+<p><strong>Tạo solution trên Visual Studio 2013 (Community Edition)).</strong><br />
+Màn hình chính của VS2013 sau khi khởi động.<br />
+<img src="/images/opengl/3.jpg" alt="" /></p>
+
+<p>Chọn <strong>File-&gt;New-&gt;Project</strong> hoặc <strong>Ctrl + Shift + N.</strong><br />
+<img src="/images/opengl/4.jpg" alt="" /></p>
+
+<p>Thêm một source code vào thư mục chính. <strong>Ctrl + Shift + A</strong> và thử một vài dòng code xem nào: (đặt tên file là <code class="language-plaintext highlighter-rouge">main.cpp</code>)<br />
+<img src="/images/opengl/5.jpg" alt="" /></p>
+
+<p>Có vẻ ổn. Bây giờ bạn tạo một folder với tên “Dependencies” trong thư mục gốc của project (không phải thư mục gốc của solution!). Đây sẽ là nơi mà chúng ta bỏ các headers của GLEW (và những thứ khác nữa) vào. Mục đích của việc này là để tránh phải phụ thuộc vào các path sẵn có của Visual Studio. Nếu chẳng may phải cài lại Windows thì chúng ta cũng phải chép lại thư viện vào những nơi đó, vốn rất bất tiện để quản lý (và phân phối source code sau này).<br />
+<img src="/images/opengl/6.jpg" alt="" /></p>
+
+<p>Giải nén GLEW. Chép những headers trong <strong>/include</strong> và thư viện <strong>/lib/Release/Win32</strong> vào thư mục <strong>Dependencies</strong> (<strong>glew32.lib</strong> và <strong>glew32s.lib</strong>), và <strong>glew32.dll</strong> trong <strong>/bin/Release/Win32</strong> vào thư mục <strong>Debug</strong> của solution.<br />
+<img src="/images/opengl/7.jpg" alt="" /></p>
+
+<h3 style="color:Indigo;"><b>GLFW</b></h3>
+<p>Đây là thư viện phụ trách việc quản lý cửa sổ, context, mở OpenGL profile, input handling, và nhiều thứ khác.</p>
+
+<p><strong>Download</strong>: <a href="https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.bin.WIN32.zip">https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.bin.WIN32.zip</a></p>
+
+<p>Ném nội dung folder <strong>/include</strong> vào <strong>Dependencies</strong>.<br />
+Chép hai file từ <strong>/lib-vc2013</strong> vào <strong>Dependencies</strong>, và file DLL còn lại (<strong>glfw3.dll</strong>) vào thư mục <strong>Debug</strong> (nằm ở trong folder solution).</p>
+
+<h3 style="color:Indigo;"><b>GLM (OpenGL Mathematics)</b></h3>
+<p>Đây là thư viên chứa các kiểu dữ liệu và các phép toán trên các kiểu dữ liệu: vectors, matrices (phổ biến nhất). Bắt đầu từ modern OpenGL, OpenGL sẽ không tích hợp các công cụ này mà tự developers phải quản lý lấy. Rất may cho chúng ta là những thư viện như vậy đã có sẵn, không cần phải viết lại.</p>
+
+<p><strong>Download</strong>: <a href="http://sourceforge.net/projects/ogl-math/files/glm-0.9.6.3/glm-0.9.6.3.zip/download">http://sourceforge.net/projects/ogl-math/files/glm-0.9.6.3/glm-0.9.6.3.zip/download</a></p>
+
+<p>Giải nén và chép cả folder <strong>glm</strong> vào <strong>Dependencies</strong>.<br />
+<img src="/images/opengl/8.jpg" alt="" /></p>
+
+<p>Sau khi giải nén và chép mọi thứ, thư mục <strong>Dependencies</strong> của bạn sẽ trông như thế này.<br />
+<img src="/images/opengl/9.jpg" alt="" /></p>
+
+<p>Được rồi, mở Visual Studio, mở solution cũ của chúng ta, click phải vào project và chọn Properties, rồi click vào <strong>VC++ Directories</strong>.<br />
+<img src="/images/opengl/10.jpg" alt="" /></p>
+
+<p>Mở <strong>“Include Directories”</strong> và chọn Edit. Ở đây chúng ta sẽ cung cấp nội dung của thư mục “Dependencies” để Visual Studio có thể tìm kiếm nội dung (headers, libraries) trong thư mục này. Trong hộp thoại mở ra, nhấn vào biểu tưởng màu vàng, nhập:<br />
+<code class="language-plaintext highlighter-rouge">$(SolutionDir)\Dependencies</code></p>
+
+<p><strong>$(SolutionDir)</strong> tựa như một biến môi trường (environment variable), nó trỏ tới thư mục gốc của solution. Chúng ta chỉ cần thêm <strong>\Dependencies</strong> để nó có thể trỏ tới thư mục <strong>Dependencies</strong>. Visual Studio sẽ tìm headers trong thư mục này (<strong>$(SolutionDir)\Dependencies</strong>).</p>
+
+<p>Làm tương tự với <strong>Library Directories</strong>.<br />
+<img src="/images/opengl/11.jpg" alt="" /></p>
+
+<p>Tại sao không cất “Dependencies” vào <strong>$(ProjectDir)</strong> (trỏ tới thư mục Project) mà phải dùng <strong>$(SolutionDir)</strong>? Well, chúng ta sẽ “share” những thư viện này trong solution cho các projects khác nhau ở solution đó có thể cùng dùng, chứ không cất riêng ở một project nào đó.</p>
+
+<p>Mở file <code class="language-plaintext highlighter-rouge">main.cpp</code>, nhập:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="c1"> /* printf() */</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">"..\Dependencies\GL\glew.h"</span><span class="cp">
+#include</span> <span class="cpf">"..\Dependencies\GLFW\glfw3.h"</span><span class="cp">
+#include</span> <span class="cpf">"..\Dependencies\glm\glm.hpp"</span><span class="cp">
+</span>
+<span class="cm">/*
+ * Links các thư viện của OpenGL, GLEW và GLFW3.
+ * Ta không dùng dấu .., / để chỉ định thư mục vì ta đã chỉ định các thư mục cần tìm kiếm lúc nãy *chỉ lên trên*
+ */</span>
+<span class="cp">#pragma comment(lib, "glew32.lib")
+#pragma comment(lib, "OpenGL32.lib")
+#pragma comment(lib, "GlU32.lib")
+#pragma comment(lib, "glfw3.lib")
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="cm">/* Cài đặt GLFW3, sử dụng OpenGL 4.3, với khứ răng cưa bốn mẫu.
+     * Lưu ý, đây chỉ là hint, không phải mệnh lệnh bắt buộc.
+     */</span>
+    <span class="n">GLenum</span> <span class="n">glfwSuccess</span> <span class="o">=</span> <span class="n">glfwInit</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">glfwSuccess</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"-- Tải thành công GLFW3. --</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_SRGB_CAPABLE</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_RESIZABLE</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_DECORATED</span><span class="p">,</span> <span class="n">GL_TRUE</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CLIENT_API</span><span class="p">,</span> <span class="n">GLFW_OPENGL_API</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_SAMPLES</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_OPENGL_PROFILE</span><span class="p">,</span> <span class="n">GLFW_OPENGL_COMPAT_PROFILE</span><span class="p">);</span>
+
+    <span class="n">GLFWmonitor</span> <span class="o">*</span><span class="n">monitor</span> <span class="o">=</span> <span class="n">glfwGetPrimaryMonitor</span><span class="p">();</span>
+    <span class="k">const</span> <span class="n">GLFWvidmode</span> <span class="o">*</span><span class="n">ClientVideoMode</span> <span class="o">=</span> <span class="n">glfwGetVideoMode</span><span class="p">(</span><span class="n">monitor</span><span class="p">);</span>
+
+    <span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">GLWindow</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">ClientVideoMode</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">,</span> <span class="n">ClientVideoMode</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">,</span> <span class="s">"GLWindow"</span><span class="p">,</span> <span class="n">monitor</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">GLWindow</span><span class="p">);</span>
+
+    <span class="cm">/* Cài đặt GLEW. */</span>
+    <span class="n">glewExperimental</span> <span class="o">=</span> <span class="n">GL_TRUE</span><span class="p">;</span>
+    <span class="n">GLenum</span> <span class="n">glewSuccess</span> <span class="o">=</span> <span class="n">glewInit</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">glewSuccess</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"-- Tải thành công GLEW (%s) --"</span><span class="p">,</span> <span class="n">glewGetString</span><span class="p">(</span><span class="n">GLEW_VERSION</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Nếu chương trình biên dịch thành công, chạy nó và bạn sẽ thấy một cửa sổ lớn bằng màn hình nháy lên và sau đó tắt. Vậy là ta đã hoàn tất việc cài đặt.</p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="pagination">
+  
+      
+        <a class="btn btn-default" href="/page3" class="previous">Newer</a>
+      
+  
+  <span class="page_number ">Page: 4 of 4</span>
+  
+</div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 footer navbar-inverse navbar-fixed-bottom">
+            <p class="copyright">&copy;2022 Stardust. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="https://github.com/scotte/jekyll-clean">Scott Emmons</a>
+            under
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+

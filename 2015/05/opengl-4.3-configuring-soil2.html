@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stardust</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/theme.css" rel="stylesheet" type="text/css">
+    <link href="/css/syntax.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Stardust</a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active visible-xs-block"><a href="/links.html">Links</a></li>
+                    <li class="active"><a href="/archive.html">Archive</a></li>
+                    <li class="active"><a href="/about.html">About</a></li>
+                    <li class="active"><a href="/feed.xml">RSS</a></li>
+                    
+                    
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar well">
+    <!-- https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container -->
+    <img src="/images/2016.png" style='height: 100%; width: 100%; object-fit: contain'/>
+
+    <i>2016.</i>
+</div>
+
+<div class="sidebar well">
+    <h1>Recent Posts</h1>
+    <ul>
+        
+          <li><a href="/2021/06/i-thought-about-killing-you.html"><pubDate>15 Jun 2021</pubDate> - I Thought About Killing You</a></li>
+        
+          <li><a href="/2021/05/lost-in-translation.html"><pubDate>03 May 2021</pubDate> - Lost In Translation (2003)</a></li>
+        
+          <li><a href="/2021/02/still-grinding.html"><pubDate>21 Feb 2021</pubDate> - Still Grindin'</a></li>
+        
+          <li><a href="/2020/08/a-two-minute-review.html"><pubDate>15 Aug 2020</pubDate> - A Two-Minute Horror Review</a></li>
+        
+          <li><a href="/2020/05/introduction.html"><pubDate>13 May 2020</pubDate> - Introduction</a></li>
+        
+          <li><a href="/2015/05/far-cry-3-story-analysis.html"><pubDate>25 May 2015</pubDate> - Far Cry 3: Story Analysis</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-rendering-pipeline.html"><pubDate>17 May 2015</pubDate> - OpenGL 4.3 - Part 4: Rendering Pipeline, Part 1</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-soil2.html"><pubDate>16 May 2015</pubDate> - OpenGL 4.3 - Part 3: Configuring SOIL2</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-introduction.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 1: Introduction</a></li>
+        
+          <li><a href="/2015/05/opengl-4.3-configuring-vs2013.html"><pubDate>13 May 2015</pubDate> - OpenGL 4.3 - Part 2: Configuring VS2013</a></li>
+        
+    </ul>
+</div>
+
+<div class="sidebar well">
+<h1>Links</h1>
+<ul>
+  <li><a href="https://stardust-garden.itch.io/">itch.io</a></li>
+</ul>
+
+</div>
+
+        </div>
+        <div class="col-md-9">
+          <div class="article">
+            <div class="well">
+                <h1><a href="/2015/05/opengl-4.3-configuring-soil2.html">May 16, 2015 - OpenGL 4.3 - Part 3: Configuring SOIL2</a></h1>
+            
+            <div class="post-content">
+            <h1 style="color:Green;"><b><p align="center">Cài đặt SOIL2 - Simple OpenGL Image Library</p></b></h1>
+
+<p>Trong riêng bài viết này, mình sẽ hướng dẫn cài đặt và sử dụng SOIL2 cho Visual Studio 2013 (Community Edition), một phần là vì cách cài đặt SOIL2 vào project sẽ hơi khác (chúng ta sẽ biên dịch SOIL2 từ source code..rất dễ xD~) so với việc download thư viện pre-built từ source và sử dụng; phần còn lại là vì mình không muốn làm rối bài hướng dẫn gốc.</p>
+
+<h3 id="về-soil2"><strong>Về SOIL2</strong></h3>
+<p>SOIL2 là một thư viện cho phép người dùng có thể load textures vào OpenGL một cách dễ dàng. Textures, theo cách dễ hiểu, là một hình ảnh. Cỏ, cây, lá, mặt bàn, mặt đất, bầu trời. Chúng ta có thể dán những textures này vào bề mặt vật thể. Việc “dán” texture vào bề mặt vật thể được gọi là texture mapping (ánh xạ texture). Textures có thể là 1D, 2D hoặc 3D, trong đó 2D textures phổ biến nhất, chúng dùng để “dán” (ánh xạ - gọi là map, nên có tên “texture mapping”) hình ảnh vào vật thể, trong khi đó 1D textures có thể được dùng làm một bảng lookup (bảng màu có sẵn), và 3D có thể được dùng để tạo những thứ như volumetric particles. Well, ta sẽ không đi vào quá sâu, nhưng 2D textures là ứng dụng chính của textures, hết. xD~</p>
+
+<p>Có sẵn các thư viện riêng khác cũng cung cấp chức năng load textures từ nhiều loại ảnh, tương tự như SOIL: DevIL, ResIL, FreeImage, v..v…, nhưng có vài lý do sau đây ta chọn SOIL2:</p>
+<ul>
+  <li>Không phụ thuộc DLL ngoài, dung lượng nhỏ, viết trên C.</li>
+  <li>Thích hợp dùng trong OpenGL: <strong>SOIL = Simple OpenGL Image Library</strong>. Ngoài load hình ảnh nó có thể thực hiện các thao tác load textures trong OpenGL, vốn là việc mà nếu dùng DevIL hay FreeImage, chúng ta phải load hình trước (bằng các thư viện này) rồi load textures từ ảnh này vào OpenGL.</li>
+  <li>Đọc được các loại định dạng ảnh thông dụng, giống như các thư viện cùng “loài”.</li>
+</ul>
+
+<h3 id="tải-và-biên-dịch-soil2"><strong>Tải và biên dịch SOIL2</strong></h3>
+<p>Tác giả SOIL2 không cung cấp phiên bản thư viện cho nó, nên chúng ta sẽ tự compile source code để lấy thư viện. Một điều may mắn là chúng ta có thể generate project files cho Visual Studio bằng premake để có thể biên dịch rất dễ dàng.</p>
+<ul>
+  <li>Download <a href="https://premake.github.io/">premake 4.4</a>.</li>
+  <li>Download <a href="https://bitbucket.org/SpartanJ/soil2/get/056dabf069cb.zip">SOIL2</a>.</li>
+</ul>
+
+<p>Giải nén source code của SOIL2, chép file executable của premake vào thư mục SOIL2 và mở một command prompt.<br />
+<img src="/images/opengl/12.jpg" alt="" /></p>
+
+<p>Gõ<br />
+<code class="language-plaintext highlighter-rouge">premake4 vs2012</code><br />
+để generate project cho VS2012. Kết quả nằm trong <strong>./make/windows/</strong>. Mở nó ra, và bạn sẽ nhận được thông báo cần update compilers cho project này. Chúng ta không sử dụng <strong>vs2013</strong> mà dùng <strong>vs2012</strong> vì tạm thời SOIL2 chưa hỗ trợ generate project trên VS2013, nên ta sẽ generate cho VS2012 và upgrade lên VS2013.<br />
+<img src="/images/opengl/13.jpg" alt="" /></p>
+
+<p>Bấm OK và chọn <strong>Build -&gt; Build Solution</strong> hoặc nhấn <strong>F7</strong>. Nhớ trỏ configuration về <strong>“release”</strong>.<br />
+<img src="/images/opengl/14.jpg" alt="" /></p>
+
+<p>Kết quả sẽ nằm trong <strong>./lib/windows/</strong>. Chép nó vào thư mục <strong>Dependencies</strong> cùng với headers của <strong>SOIL2</strong> (nằm ở <strong>./src/</strong>, bạn chỉ cần dùng thư mục <strong>SOIL2</strong>).</p>
+
+<p>Cuối cùng là mở project, link thư viện của <strong>SOIL2</strong> và include headers, thế là xong:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;SOIL2/SOIL2.h&gt;</span><span class="cp">
+</span><span class="p">...</span>
+<span class="cp">#pragma comment(lib, "soil2.lib")
+</span></code></pre></div></div>
+
+<p>Bạn có thể test bằng cách load 1 ảnh mẫu và trả kết quả: (thay <em>img.jpg</em> với một ảnh bất kì)</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="s">"%i"</span><span class="p">,</span> <span class="p">(</span><span class="n">GLuint</span><span class="p">)</span> <span class="n">SOIL_load_OGL_texture</span><span class="p">(</span><span class="s">"img.jpg"</span><span class="p">,</span> <span class="n">SOIL_LOAD_AUTO</span><span class="p">,</span> <span class="n">SOIL_CREATE_NEW_ID</span><span class="p">,</span> <span class="n">SOIL_FLAG_NTSC_SAFE_RGB</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Nếu <strong>printf()</strong> in ra 1, ta đã thành công.</p>
+
+<p>Trong bài viết tiếp theo sẽ nói một cách tổng quát về rendering pipeline của OpenGL 4.3, là cách mà OpenGL biến đổi dữ liệu 3D thành dữ liệu 2D có thể hiển thị được trên màn hình.</p>
+
+            </div>
+            
+            </div>
+          </div>
+          <div class="pagination">
+              
+                <a class="btn btn-default" href="/2015/05/opengl-4.3-rendering-pipeline.html" class="next">Newer Post</a>
+              
+              
+                <a class="btn btn-default" href="/2015/05/opengl-4.3-introduction.html" class="previous">Older Post</a>
+              
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 footer navbar-inverse navbar-fixed-bottom">
+            <p class="copyright">&copy;2022 Stardust. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="https://github.com/scotte/jekyll-clean">Scott Emmons</a>
+            under
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+
